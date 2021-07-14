@@ -1,0 +1,222 @@
+git add moretesting/
+git commit -m "My message"
+git status
+git remote
+git remote -v
+git clone git@petesuch.git.testingFolder
+git pull testingFolder git@petesuch.git
+git config
+git pull testingFolder github.com/petesuch
+git init
+git add README.md
+git commit -m "further testing"
+git branch -M master
+git remote add origin https://github.com/petesuch/testingFolder.git
+git remote add origin https://github.com/petesuch/testingFolder.git
+git pull origin practicalCProgrammingExercises
+git pull origin practicalCProgrammingExercises
+git --namespace=petesuch
+git status
+git config --list
+git config
+git config --global user.name
+git config --global user.name "petesuch"
+git config --global user.name
+cd .git
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git
+cd .git
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git --allow-unrelated-histories
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git --allow-unrelated-histories
+cd .git
+rm -rf .gitignore
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git --allow-unrelated-histories
+git git@github.com:VundleVim/Vundle.vim.git.
+git pull git@github.com:VundleVim/Vundle.vim.git.
+ssh git@github.com:VundleVim/Vundle.vim.git.
+ssh -l petesuch git@github.com:VundleVim/Vundle.vim.git.
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git
+git config --global user.name
+git config --global user.email
+git init
+cd .git
+cd .git
+git config --user.name 'petesuch'
+git --config user.name 'petesuch'
+git config
+git help -a
+git config
+git config user.name 'petesuch'
+git config user.email 'visiondoctor2020@gmail.com'
+git status
+git config --global user.name 'petesuch'
+git config --global user.email 'visiondoctor2020@gmail.com'
+git status
+git clone https://github.com/petesuch/PracticalCExercises
+git status
+git config --list
+cd .git
+git help config
+git add --help
+git status
+git init
+git status
+git add .
+git commit -m "first commit"
+git add .
+git commit -m "minor cleanup before big changes"
+git init
+git status
+git add .
+git commit -m "first commit"
+git branch
+git init
+git log
+git remote add origin https://github.com/petesuch/testingFolder.git
+git push -u origin master
+git log
+git checkout alternate-time-line
+git add .
+git commit -m "blah"
+git branch
+git master
+git branch master
+git checkout master
+git add .
+git commit -m "more"
+git log
+git branch
+git remote -v
+git log
+git status
+git push
+git remote -v
+git remote add origin git@gitlab.com:petesuch
+ssh -T git@gitlab.com
+git clone git@gitlab.com:gitlab-org/gitlab.git
+git add moretesting/
+git commit -m "My message"
+git status
+git status
+git remote
+git remote -v
+git clone git@petesuch.git.testingFolder
+git pull testingFolder git@petesuch.git
+git config
+git pull testingFolder github.com/petesuch
+git pull petesuch/testingFolder github.com/petesuch
+git pull petesuch@github.git/testingFolder github.com/petesuch
+git init
+git add README.md
+git commit -m "further testing"
+git branch -M master
+git remote add origin https://github.com/petesuch/testingFolder.git
+git remote add origin https://github.com/petesuch/testingFolder.git
+git pull origin practicalCProgrammingExercises
+git pull origin practicalCProgrammingExercises
+git pull origin practicalCProgrammingExercises
+git -config
+git --namespace=petesuch
+git status
+git config --list
+git config
+git --config
+git -config
+git config --global user.name
+git config --global user.name "petesuch"
+git config --global user.name
+cd .git
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git
+cd .git
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git --allow-unrelated-histories
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git --allow-unrelated-histories
+cd .git
+rm -rf .gitignore
+git pull https://github.com/petesuch/practicalCProgrammingExercises.git --allow-unrelated-histories
+git git@github.com:VundleVim/Vundle.vim.git.
+git pull git@github.com:VundleVim/Vundle.vim.git.
+ssh git@github.com:VundleVim/Vundle.vim.git.
+ssh -l petesuch git@github.com:VundleVim/Vundle.vim.git.
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git
+git config --global user.name
+git config --global user.email
+git init
+cd .git
+cd .git
+git config
+git
+git help
+git help -a
+git config
+git config user.name 'petesuch'
+git config user.email 'visiondoctor2020@gmail.com'
+git status
+git config --global user.name 'petesuch'
+git config --global user.email 'visiondoctor2020@gmail.com'
+git status
+git clone https://github.com/petesuch/PracticalCExercises
+git status
+git config --list
+cd .git
+git help config
+git add --help
+git status
+git status
+git commit -m "create hello.txt"
+git add hello.txt
+git status
+git commit -m "create hello.txt"
+git log
+git commit -m "create hello.txt"
+git log
+git log
+git status
+git log
+git commit -m "1st mod hello.txt"
+git log
+git log
+git commit -m "3rd mod hello.txt"
+git add hello.txt
+git status
+git status
+git add .
+git status
+git commit -m "add files"
+git log
+git status
+git add .
+git add .
+git status
+git log
+git add .
+git commit -m "add files"
+git checkout 73c4b1567138aab0f182b52f0b2893cf3189cdc6
+git log
+git checkout 18f94878258916f4416917d5e6aae85bb42e2b56
+git checkout master
+git checkout branch
+git branch
+git status
+git checkout 18f94878258916f4416917d5e6aae85bb42e2b56
+git switch -c alternate-time-line
+git checkout master
+git commit -m "alt time line"
+git add .
+git branch
+git checkout master
+git commit -m "alt time line"
+git checkout master
+git branch
+git checkout alternate-time-line
+git add .
+git commit
+git commit -m "learning alt"
+git checkout alternate-time-line
+git checkout master
+git add hello.txt
+git commit -m "getting cranky"

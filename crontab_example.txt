@@ -1,0 +1,2 @@
+40 06-23/1 * * * /usr/bin/rsync -auvtb --suffix _old --exclude={'virt', '*_old', 'desktop.ini'} /cygdrive/c/Users/Peter/MyPyprojects/  /cygdrive/c/Users/Peter/OneDrive/Desktop/Manjo_Peter/MyPyprojects
+53 06-23/1 * * * /usr/bin/rsync -auvtb --suffix _old --exclude '*_old' /cygdrive/c/Users/Peter/OneDrive/Desktop/Manjo_Peter/MyPyprojects/  /cygdrive/c/Users/Peter/MyPyprojects

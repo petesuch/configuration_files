@@ -1,0 +1,4 @@
+#40 06-23/1 * * * /usr/bin/rsync -auvtb --suffix _old --exclude={'virt', '*_old', 'desktop.ini'} /cygdrive/c/Users/Peter/MyPyprojects/  /cygdrive/c/Users/Peter/OneDrive/Desktop/Manjo_Peter/MyPyprojects
+#17 06-23/1 * * * /usr/bin/rsync -auvtb --suffix '_old' --exclude '*_old' /cygdrive/c/Users/Peter/OneDrive/Desktop/Manjo_Peter/MyPyprojects/  /cygdrive/c/Users/Peter/MyPyprojects
+#22 06-23/1 * * * /usr/bin/rsync -auvtb --suffix '_old' --exclude={'virt', '*_old', 'desktop.ini'} /cygdrive/z/MyPyprojects/ /cygdrive/c/Users/Peter/MyPyprojects
+

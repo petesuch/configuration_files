@@ -1,0 +1,40 @@
+#### useful commands
+
+# ls /usr/share/kbd/keymaps/**/*.map.gz
+# ls /sys/firmware/efi/efivars
+# timedatectl set-ntp true
+# fdisk -l
+
+# fdisk /dev/sda ... do your thing
+# mkfs.ext4 /dev/sda1
+# mkfs.ext4 /dev/sda3
+# mkswap /dev/sda2
+# swapon /dev/sda2
+
+
+# reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+
+# pacstrap /mnt linux linux-firmware base btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
+
+
+# arch-chroot /mnt
+
+
+# grub-install /dev/sda
+# grub-mkconfig -o /boot/grub/grub.cfg
+
+# systemctl start systemd-networkd
+# systemctl start systemd-resolved
+
+# systemctl enable systemd-networkd
+# systemctl enable systemd-resolved
+
+# systemctl start sshd
+# systemctl enable sshd
+####
+# pacman -Sy grub openssh vim gcc bison python3
+
+# reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+# ip link set dev enp0s3 up
