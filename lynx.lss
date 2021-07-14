@@ -1,0 +1,46 @@
+# lynx.lss
+#  work in progress  July 14th, 2021
+#
+#  Peter Suchsland
+#  peter.suchsland@gmail.com,visiondoctor2020@gmail.com
+#
+#  The goal is to get lynx color friendly for linuxfromscratch website,
+#  Where code that is to be copied and pasted is highlighted and easy to see.
+#
+# The line must be of the form:
+#
+# COLOR:Integer:Foreground:Background
+#
+# The Integer value is interpreted as follows:
+#   0 - normal           - normal text
+#   1 - bold             - hyperlinks, see also BOLD_* options above
+#   2 - reverse          - statusline
+#   3 - bold + reverse       (not used)
+#   4 - underline                - text emphasis (EM, I, B tags etc.)
+#   5 - bold + underline         - hyperlinks within text emphasis
+#   6 - reverse + underline       - currently selected hyperlink
+#   7 - reverse + underline + bold  - WHEREIS search hits
+#
+# Each Foreground and Background value must be one of:
+#   black         red            green         brown
+#   blue          magenta        cyan          lightgray
+#   gray          brightred      brightgreen   yellow
+#   brightblue    brightmagenta  brightcyan    white
+#
+# Where commands are distinguished from the rest of text.  Links should be
+#  a blue or purple and red green used in very limited ways
+#
+#
+#
+# For creamy  white background and black letters:
+normal:     normal:     black:         lightgray
+default:    normal:     black:         white
+
+# HERE is where gets important...
+# Styles with classes - <ul class=red> etc.
+
+kbd.command:    normal:    red:    brightcyan
+a:		    bold:			magenta
+#normal:normal:default:blue
+alink:		reverse:		yellow:     magenta
+status:		reverse:		yellow:		blue
