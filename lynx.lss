@@ -38,9 +38,8 @@ default:    normal:     black:         white
 
 # HERE is where gets important...
 # Styles with classes - <ul class=red> etc.
-
 kbd.command:    normal:    red:    brightcyan
-a:		    bold:			magenta
+a:                  bold:                       brown
 #normal:normal:default:blue
-alink:		reverse:		yellow:     magenta
-status:		reverse:		yellow:		blue
+alink:          reverse:                black:     brightblue
+status:         reverse:                yellow:         blue
