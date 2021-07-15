@@ -1,4 +1,4 @@
-## bashrc
+## bashrc ... a nicer version with cool prompt
 
 alias df='df -h'
 alias du='du -h'
