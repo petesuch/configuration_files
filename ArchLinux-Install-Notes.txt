@@ -1,4 +1,5 @@
-#### useful commands
+
+#### Commands to Pay attention to while reading the ArchLinux Installation Wiki
 
 # ls /usr/share/kbd/keymaps/**/*.map.gz
 # ls /sys/firmware/efi/efivars
@@ -11,15 +12,11 @@
 # mkswap /dev/sda2
 # swapon /dev/sda2
 
-
 # reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
 
 # pacstrap /mnt linux linux-firmware base btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
 
-
 # arch-chroot /mnt
-
 
 # grub-install /dev/sda
 # grub-mkconfig -o /boot/grub/grub.cfg
@@ -32,9 +29,10 @@
 
 # systemctl start sshd
 # systemctl enable sshd
-####
-# pacman -Sy grub openssh vim gcc bison python3
 
 # reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+## Don't forget to add stuff NOW... the new system does not have pacman??
+# pacman -Sy grub openssh vim gcc bison python3 pacman...
 
 # ip link set dev enp0s3 up
