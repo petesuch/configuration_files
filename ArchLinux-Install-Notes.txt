@@ -14,12 +14,25 @@
 
 # reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-# pacstrap /mnt linux linux-firmware base btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
+# mount /dev/sda3 /mnt
+# mkdir /mnt/boot
+# mount /dev/sda1 /mnt/boot
 
-# arch-chroot /mnt
+# pacstrap /mnt linux linux-firmware base
+
+# genfstab -U /mnt >> /mnt/etc/fstab
+
+# arch-chroot /mnt 
+
+# pacman -Syy grub vim sudo
 
 # grub-install /dev/sda
 # grub-mkconfig -o /boot/grub/grub.cfg
+
+# pacman -Syy btfrfs-progs 
+# pacman -Syy virtualbox-guest-utils
+# pacman -Syy samba
+
 
 # systemctl start systemd-networkd
 # systemctl start systemd-resolved
@@ -33,6 +46,7 @@
 # reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 ## Don't forget to add stuff NOW... the new system does not have pacman??
+
 # pacman -Sy grub openssh vim gcc bison python3 pacman...
 
 # ip link set dev enp0s3 up
