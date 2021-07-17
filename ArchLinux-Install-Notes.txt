@@ -39,6 +39,7 @@
 # pacman -Syy samba
 # pacman -Sy openssh gcc bison python3 
 
+### Up?? probably not...
 # ip addr
 # ip link set dev enp0s3 up
 
@@ -51,11 +52,16 @@
 # systemctl enable systemd-networkd
 # systemctl enable systemd-resolved
 
+### You might want to enable root in sshd.conf
+
 # systemctl start sshd
 # systemctl enable sshd
 
 # reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+### see files for editing these...
 # vim /etc/systemd/network/10-enp0s3.network
+# vim /etc/samba/smb.cfg
 
 # systemctl enable smb
 # systemctl enable nmb
