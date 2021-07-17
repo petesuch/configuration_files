@@ -1,0 +1,14 @@
+  0
+  1 [Match]
+  2 Name=enp0s3
+  3 Name=eth*
+  4
+  5 [Network]
+  6 DHCP=yes
+  7 IPv6PrivacyExtensions=yes
+  8
+  9 [DHCPv4]
+ 10 RouteMetric=512
+ 11
+ 12 [DHCPv6]
+ 13 RouteMetric=512
