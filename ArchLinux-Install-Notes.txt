@@ -17,33 +17,12 @@
 
 # reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-<<<<<<< HEAD
-# reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
-# mount /dev/sda3 /mnt
-
-# mkdir /mnt/boot
-# mount /dev/sda1 /mnt/boot
-
-# pacstrap /mnt linux linux-firmware base
-
-# genfstab -U /mnt >> /mnt/etc/fstab
-
-### You will want this later...
-# tar -cvf ETC.tar /etc
-# mv ETC.tar /mnt/root (if the root dir exists).  
-
-# arch-chroot /mnt 
-
-# pacman -Syy grub vim sudo
-=======
 # pacstrap /mnt linux linux-firmware base 
 
 ##  Also want these installed:  btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
 
 # genfstab -U /mnt >> /mnt/etc/fstab
 # arch-chroot /mnt
->>>>>>> b2e9c5a23891f981ab4274d26e3feec5cba1f53c
 
 ##   Do the locale stuff...
 
@@ -54,40 +33,6 @@
 # grub-install /dev/sda
 # grub-mkconfig -o /boot/grub/grub.cfg
 
-<<<<<<< HEAD
-### Don't forget to add stuff NOW; the new system may not have pacman... check!!
-# pacman -Syy btfrfs-progs 
-# pacman -Syy virtualbox-guest-utils
-# pacman -Syy samba
-# pacman -Sy openssh gcc bison python3 
-
-### Up?? probably not...
-# ip addr
-# ip link set dev enp0s3 up
-
-### The new system does not start networking... you need to set it up with
-###  systemd
-
-# systemctl start systemd-networkd
-# systemctl start systemd-resolved
-
-# systemctl enable systemd-networkd
-# systemctl enable systemd-resolved
-
-### You might want to enable root in sshd.conf
-
-# systemctl start sshd
-# systemctl enable sshd
-
-# reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
-### see files for editing these...
-# vim /etc/systemd/network/10-enp0s3.network
-# vim /etc/samba/smb.cfg
-
-# systemctl enable smb
-# systemctl enable nmb
-=======
 # systemctl enable systemd-networkd
 # systemctl enable systemd-resolved
 # systemctl enable sshd
@@ -106,4 +51,3 @@
 # systemctl start sshd
 
 
->>>>>>> b2e9c5a23891f981ab4274d26e3feec5cba1f53c
