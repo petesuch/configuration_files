@@ -1,4 +1,5 @@
-#### Commands to Pay attention to while reading the ArchLinux Installation Wiki
+##  Commands to Pay attention to while reading the
+##  ArchLinux Installation Wiki
 
 # ls /usr/share/kbd/keymaps/**/*.map.gz
 # ls /sys/firmware/efi/efivars
@@ -8,25 +9,26 @@
 # fdisk /dev/sda ... do your thing
 # mkfs.ext4 /dev/sda1
 # mkfs.ext4 /dev/sda3
+## mkfs.ext4 /dev/sda4
 # mkswap /dev/sda2
 
-# swapon /dev/sda2
 # mount /dev/sda3 /mnt
 # mkdir /mnt/boot
 # mount /dev/sda1 /mnt/boot
+# swapon /dev/sda2
 
 # reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 # pacstrap /mnt linux linux-firmware base 
 
-##  Also want these installed:  btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
-
 # genfstab -U /mnt >> /mnt/etc/fstab
+
 # arch-chroot /mnt
 
 ##   Do the locale stuff...
 
 ##   Also do not forget to add stuff NOW... the new system may not have pacman... check!  
+##  btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
 
 # pacman -Sy grub pacman openssh vim gcc bison python3  samba
 
@@ -37,11 +39,11 @@
 # systemctl enable systemd-resolved
 # systemctl enable sshd
 
-# vim /etc/systemd/network/10-enp0s2.network
+# vim /etc/systemd/network/10-enp0s3.network
 
 # reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-##  Ok to reboot at this point.  Depending on how well you configured the network ... you may 
-## even have networking!  
+##  It's Ok to reboot at this point.  Depending on how well you configured the network...
+##  you may even have networking!  
 
 # ping localhost
 # ip addr
@@ -49,5 +51,4 @@
 # systemctl start systemd-networkd
 # systemctl start systemd-resolved
 # systemctl start sshd
-
 
