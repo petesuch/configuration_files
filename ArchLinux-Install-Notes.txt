@@ -10,29 +10,45 @@
 # mkfs.ext4 /dev/sda1
 # mkfs.ext4 /dev/sda3
 # mkswap /dev/sda2
+
 # swapon /dev/sda2
+# mount /dev/sda3 /mnt
+# mkdir /mnt/boot
+# mount /dev/sda1 /mnt/boot
 
-# reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+# reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-# pacstrap /mnt linux linux-firmware base btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
+# pacstrap /mnt linux linux-firmware base 
 
+##  Also want these installed:  btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
+
+# genfstab -U /mnt >> /mnt/etc/fstab
 # arch-chroot /mnt
+
+##   Do the locale stuff...
+
+##   Also do not forget to add stuff NOW... the new system may not have pacman... check!  
+
+# pacman -Sy grub pacman openssh vim gcc bison python3  samba
 
 # grub-install /dev/sda
 # grub-mkconfig -o /boot/grub/grub.cfg
 
-# systemctl start systemd-networkd
-# systemctl start systemd-resolved
-
 # systemctl enable systemd-networkd
 # systemctl enable systemd-resolved
-
-# systemctl start sshd
 # systemctl enable sshd
 
-# reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+# vim /etc/systemd/network/10-enp0s2.network
 
-## Don't forget to add stuff NOW... the new system does not have pacman??
-# pacman -Sy grub openssh vim gcc bison python3 pacman...
+# reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+##  Ok to reboot at this point.  Depending on how well you configured the network ... you may 
+## even have networking!  
 
+# ping localhost
+# ip addr
 # ip link set dev enp0s3 up
+# systemctl start systemd-networkd
+# systemctl start systemd-resolved
+# systemctl start sshd
+
+
