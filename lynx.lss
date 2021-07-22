@@ -6,7 +6,7 @@
 #  Peter Suchsland
 #  peter.suchsland@gmail.com
 #
-#  The goal is to get lynx color friendly for the linuxfromscratch website.
+#   A color friendly scheme for the linuxfromscratch websites.
 #
 #  The line must be of the form:
 #  COLOR: Integer:Foreground:Background
@@ -30,13 +30,14 @@
 # Where commands are distinguished from the rest of text.  Links should be
 #  a blue or purple and red green used in very limited ways
 #
+
 # For creamy  white background and black letters using the nord colorscheme:
-normal:     normal:     black:      lightgray
-default:    normal:     black:      white
+normal:     normal:     black:    lightgray
+default:    normal:     black:    white
 
 a:          bold:       brown
-alink:      reverse:    black:     brightblue
-status:     reverse:    yellow:		blue
+alink:      reverse:    black:    brightblue
+status:     reverse:    yellow:   blue
 
 # Styles with classes - <ul class=red> etc:
 # LinuxFromScratch uses (kbd class command)

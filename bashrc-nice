@@ -2,11 +2,9 @@
 
 alias df='df -h'
 alias du='du -h'
-
-alias la='ls -alt --color | less -XR'                 # classify files in colour
-alias ll='ls -AF --color --format=horizontal | less -XR'                 # classify files in colour
+alias ls='ls -AF --color'
+alias la='ls -alt --color | less -XR'
+alias ll='ls -AF --color --format=horizontal | less -XR'
 alias lgrep='ls | grep'
-#alias lynx='lynx -vikeys'
 set -o vi
 export PS1="[\[\e[33m\]\d\[\e[m\] \[\e[33m\]\t\[\e[m\]]\[\e[36m\] \[\e[m\]\[\e[36m\]\u\[\e[m\]@\[\e[36m\]\H\[\e[m\]:\[\e[35m\]\w\[\e[m\] >\n$ "
-

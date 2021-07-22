@@ -1,18 +1,13 @@
 " .vimrc
-"
+
 " works well enough for Manjaro
-" Last Edit July 16, 2021
+" Last Edit July 22, 2021
 
 filetype off
 set nocompatible
 
-if has("gui_running")
-	set rtp+=~/.vim/
-    call plug#begin()
-else
-	set rtp+=~/.vim/
-    call plug#begin()
-endif
+set rtp+=~/.vim/
+call plug#begin()
 
 Plug 'junegunn/vim-plug'
 Plug 'mhinz/vim-startify'
@@ -115,67 +110,62 @@ if has("gui_running")
     set guioptions-=r
     set columns=113
     set lines=37
-    let g:airline_theme='base16'
-    cd $HOME
-else
-    "let g:airline_theme='papercolor'
-    "let g:airline_theme='molokai'
-    let g:airline_theme='base16'
 endif
 
+noswap
 syntax on
 
 "  Pick and Choose a Color Scheme...
 
-"colorscheme abstract "Dark theme based on Abstract app
-"colorscheme afterglow "Adaptation from Sublime Text
-"colorscheme alduin "Dark rustic colors
-"colorscheme anderson "Dark vim colorscheme based on colors from Wes Anderson films
-"colorscheme angr "Pleasant, mild, dark theme
-"colorscheme apprentice "Dark, low-contrast colorscheme
+"colorscheme abstract  "Dark theme based on Abstract app
+"colorscheme afterglow  "Adaptation from Sublime Text
+"colorscheme alduin  "Dark rustic colors
+"colorscheme anderson  "Dark vim colorscheme based on colors from Wes Anderson films
+"colorscheme angr  "Pleasant, mild, dark theme
+"colorscheme apprentice  "Dark, low-contrast colorscheme
 "colorscheme archery
-"colorscheme atom "Designed to be very readable in both light and dark environments
+"colorscheme atom  "Designed to be very readable in both light and dark environments
 "colorscheme ayu
 "colorscheme carbonized-dark
 "colorscheme carbonized-light
-"colorscheme challenger_deep "deep FlatColor colorscheme
-"colorscheme deep-space	"Intergalactic friendly color scheme based off Hybrid
+"colorscheme challenger_deep  "deep FlatColor colorscheme
+"colorscheme deep-space  "Intergalactic friendly color scheme based off Hybrid
 "colorscheme desert
 ""colorscheme distinguished
-"colorscheme deus "For the late night coder
+"colorscheme deus  "For the late night coder
 "colorscheme dogrun
 "colorscheme flattened_dark
 "colorscheme flattened_light
-"colorscheme focuspoint	"Maintain color coordination and important keyword focus
-"colorscheme fogbell "Minimal grey monotone with 3 variants
+"colorscheme focuspoint  "Maintain color coordination and important keyword focus
+"colorscheme fogbell  "Minimal grey monotone with 3 variants
 "colorscheme fogbell_light
 "colorscheme fogbell_lite
-"colorscheme gotham "Very dark vim colorscheme
-"colorscheme gruvbox "Retro groove color scheme
+"colorscheme gotham  "Very dark vim colorscheme
+"colorscheme gruvbox  "Retro groove color scheme
 "colorscheme happy_hacking  "Fairly small set of colors instead of throwing rainbows at your face
-"colorscheme iceberg "Dark blue color scheme
+"colorscheme iceberg  "Dark blue color scheme
 "colorscheme parsec  "Color scheme for people tired of solarized
-"colorscheme scheakur	"A light/dark colorscheme
-"colorscheme hybrid "A dark colour scheme for Vim and gVim
+"colorscheme scheakur  "A light/dark colorscheme
+"colorscheme hybrid  "A dark colour scheme for Vim and gVim
 "colorscheme jellybeans  "Colorful, dark color scheme
 "colorscheme lightning  "Light vim colorscheme based on Apprentice
-"colorscheme github "Light. Based on Github's syntax highlighting
+"colorscheme github  "Light. Based on Github's syntax highlighting
 "colorscheme lucid	"Vivid highlights and friendly, clear colors
-"colorscheme lucius	Lucius color scheme
-"colorscheme materialbox "Light and dark material palette inspired based on Gruvbox
+"colorscheme lucius  "Lucius color scheme
+"colorscheme materialbox  "Light and dark material palette inspired based on Gruvbox
 "colorscheme meta5  "Dark colorscheme, inspired by Tron
 "colorscheme minimalist  "Darker version of material theme inspired by Sublime Text
 "colorscheme molokayo  "Very tweaked molokai based theme
-"colorscheme mountaineer	"A dark and adventurous theme
+"colorscheme mountaineer  "A dark and adventurous theme
 "colorscheme nord  "An arctic, north-bluish clean and elegant theme
 "colorscheme oceanic_material  "Material dark colorscheme
-"colorscheme one	"Adaptation of one-light and one-dark
-"colorscheme onedark "Inspired by Atom's One Dark syntax theme
-"colorscheme orbital "Dark blue base16 theme
-"colorscheme paramount "Minimal colorscheme that only puts emphasis on the paramount
-"colorscheme pink-moon "Dark pastel theme
-"colorscheme purify "Clean & vibrant color schemes for Vim, Terminals
-"colorscheme pyte "Clean, light (nearly white) theme
+"colorscheme one  "Adaptation of one-light and one-dark
+"colorscheme onedark  "Inspired by Atom's One Dark syntax theme
+"colorscheme orbital  "Dark blue base16 theme
+"colorscheme paramount  "Minimal colorscheme that only puts emphasis on the paramount
+"colorscheme pink-moon  "Dark pastel theme
+"colorscheme purify  "Clean & vibrant color schemes for Vim, Terminals
+"colorscheme pyte  "Clean, light (nearly white) theme
 colorscheme rdark-terminal2  "Modified rdark-terminal to enhance visibility
 "colorscheme sierra  "Dark vintage colors
 "colorscheme solarized8  "Optimized Solarized colorschemes
