@@ -1,2 +1,12 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# I want lf as the line endings
+* text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.exe binary
+*.mp3 binary
+*.mp4 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gz binary
+*.tgz binary
