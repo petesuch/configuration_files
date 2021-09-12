@@ -1,3 +1,5 @@
+# this files belongs in /etc/systemd/network/
+# and will work with a bridged network adapter within a Vbox
 [Match]
 Name=enp0s3
 Name=eth*
