@@ -1,5 +1,6 @@
 " vimrc for arch linux
-" Last Edit July 21, 2021
+" Last Edit November 12, 2021
+" I put all the colorschemes last so its easy to get to.
 
 filetype off
 set nocompatible
@@ -9,6 +10,7 @@ call plug#begin()
 
 Plug 'junegunn/vim-plug'
 Plug 'mhinz/vim-startify'
+Plug 'petesuch/vimcolors'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -110,7 +112,7 @@ syntax on
 
 "colorscheme abstract  "Dark theme based on Abstract app
 "colorscheme afterglow  "Adaptation from Sublime Text
-colorscheme alduin  "Dark rustic colors
+"colorscheme alduin  "Dark rustic colors
 "colorscheme anderson  "Dark vim colorscheme based on colors from Wes Anderson films
 "colorscheme angr  "Pleasant, mild, dark theme
 "colorscheme apprentice  "Dark, low-contrast colorscheme
@@ -122,7 +124,7 @@ colorscheme alduin  "Dark rustic colors
 "colorscheme challenger_deep  "deep FlatColor colorscheme
 "colorscheme deep-space  "Intergalactic friendly color scheme based off Hybrid
 "colorscheme desert
-""colorscheme distinguished
+"colorscheme distinguished
 "colorscheme deus  "For the late night coder
 "colorscheme dogrun
 "colorscheme flattened_dark
@@ -160,7 +162,8 @@ colorscheme alduin  "Dark rustic colors
 "colorscheme rdark-terminal2  "Modified rdark-terminal to enhance visibility
 "colorscheme sierra  "Dark vintage colors
 "colorscheme solarized8  "Optimized Solarized colorschemes
-"colorscheme sonokai
+colorscheme solarized-suchsland "a soloarized scheme optimized more for my eyes
+"ccolorscheme sonokai
 "colorscheme space-vim-dark  "Dark magenta colors
 "colorscheme spacecamp  "Colors for the final frontier
 "colorscheme sunbather  "Minimal pink colorscheme

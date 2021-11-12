@@ -1,54 +1,107 @@
-##  Commands to Pay attention to while reading the
-##  ArchLinux Installation Wiki
+##  Commands to Pay attention to while reading the  ArchLinux Installation Wiki
+##  Or... a mini Arch-Install cheatsheet:
 
-# ls /usr/share/kbd/keymaps/**/*.map.gz
-# ls /sys/firmware/efi/efivars
-# timedatectl set-ntp true
-# fdisk -l
+## The ls command lists out all the keyboard keymaps.
+## The next 2 commands are not needed for users living in the United States
+## and who speak English.
+ls /usr/share/kbd/keymaps/**/*.map.gz | less
+loadkeys us  # unnecessary if using a US keyboard; this is the default.
 
-# fdisk /dev/sda ... do your thing
-# mkfs.ext4 /dev/sda1
-# mkfs.ext4 /dev/sda3
-## mkfs.ext4 /dev/sda4
-# mkswap /dev/sda2
+# This following command is also unnecessary as I will be creating a boot partition
+ls /sys/firmware/efi/efivars
 
-# mount /dev/sda3 /mnt
-# mkdir /mnt/boot
-# mount /dev/sda1 /mnt/boot
-# swapon /dev/sda2
+# BUT This you need to do...
+timedatectl set-ntp true
 
-# reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+# AND you need to do the partitioning...
+fdisk -l
 
-# pacstrap /mnt linux linux-firmware base 
+fdisk /dev/sda ... do your thing
+## I put around 400mb to 1gb for /sda1
+## then I added 2gb for /dev/sda2
+## then I added roughly 50gb for /dev/sda3
+## then I also added roughly 50gb for /dev/sda4
 
-# genfstab -U /mnt >> /mnt/etc/fstab
+## Remember: m is menu; p is for print; n for new partition;
+##  w is for write and exit.  t is for type of partition.
 
-# arch-chroot /mnt
+##  On my system I have 4 primary partitions with no logical partitions.
+##  You really could experiment here and perhaps make the last partition an
+##  extended partiion which would allow further partitioning.
+##  But lets just keep it simple...
 
-##   Do the locale stuff...
+## mkfs = make file system extension 4 on /dev/sdaN...
 
-##   Also do not forget to add stuff NOW... the new system may not have pacman... check!  
-##  btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
+mkfs.ext4 /dev/sda1  (... this should be around 500mb to 1gb )
+mkfs.ext4 /dev/sda3  (... this is where your / arch system will reside: at least: 25gb)
+mkfs.ext4 /dev/sda4  (... this is where we will be putting our linuxfromscratch system: at least 40gb)
+mkswap /dev/sda2 1gb maybe 2gb
 
-# pacman -Sy grub pacman openssh vim gcc bison python3  samba
+mount /dev/sda3 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+swapon /dev/sda2
 
-# grub-install /dev/sda
-# grub-mkconfig -o /boot/grub/grub.cfg
+# this next command is unnecessary. But it *should* help speed things up later...
+reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-# systemctl enable systemd-networkd
-# systemctl enable systemd-resolved
-# systemctl enable sshd
+## this command IS neccessary!!
+pacstrap /mnt linux linux-firmware base
 
-# vim /etc/systemd/network/10-enp0s3.network
+genfstab -U /mnt >> /mnt/etc/fstab
 
-# reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+# After this next command the /mnt partition is the /
+arch-chroot /mnt
+
+##  Do the locale stuff...
+
+##  Also do not forget to add stuff NOW... the new system may not even have
+##  pacman... check!
+
+pacman -Q | less
+
+pacman -Sy btrfs-progs sudo viritualbox-guest-modules virtualbox-guest-utils
+pacman -Sy grub pacman openssh vim nano gcc bison python3 samba and anything else
+## Samba is used for MS Windows connectivityi in the same way you connect to
+## other machines on your network: \\myotherbox\Users\David
+## on your network.  Check out my smb.conf for an easy but unsecure configuration.
+
+## This installs the boot loader and then a working linux kernel to boot from.
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+systemctl enable sshd
+
+## Edit this file if it is not present make one! :
+## use my 10.enp0s3.network example
+/etc/systemd/network/10-enp0s3.network
+## The exact title is not very important it shoud be a number with some
+## description of the device and then DOT network.
+
+reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+## power off the system:
+systemctl poweroff
 ##  It's Ok to reboot at this point.  Depending on how well you configured the network...
-##  you may even have networking!  
+##  you may even have networking!
 
-# ping localhost
-# ip addr
-# ip link set dev enp0s3 up
-# systemctl start systemd-networkd
-# systemctl start systemd-resolved
-# systemctl start sshd
+##  Ok!... Can you
+ping www.Google.com
+##  If yes, you are good to go congratutalations!
+##  ??  If not... we need to troubleshoot!
+ping localhost (... does that even work?)
+ip addr  (... are you getting an address?)
 
+##  Enter this command if you get nothing.
+##  The dev might be slighly different for your set up.
+
+ip link set dev enp0s3 up
+systemctl start systemd-networkd
+systemctl start systemd-resolved
+systemctl start sshd
+## or:
+systemctl restart systemd-networkd
+systemctl restart systemd-resolved
+systemctl restart sshd
