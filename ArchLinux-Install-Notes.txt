@@ -1,11 +1,10 @@
 ##  Commands to Pay attention to while reading the  "ArchLinux Installation Wiki"
-##  Or... a mini Arch-Install cheatsheet:
+##  A mini Arch Linux installation howto
 
-## The ls command lists out all the keyboard keymaps.
 ## The next 2 commands are not needed for users living in the United States
-## and who speak English.
-ls /usr/share/kbd/keymaps/**/*.map.gz | less
-loadkeys us  # unnecessary if using a US keyboard; this is the default.
+## and who speak English and use US keyboards
+ls /usr/share/kbd/keymaps/**/*.map.gz | less # lists all the keyboard keymaps.
+loadkeys us  # this is the default.
 
 # This following command is also unnecessary as I will be creating a boot partition
 ls /sys/firmware/efi/efivars
@@ -13,28 +12,28 @@ ls /sys/firmware/efi/efivars
 # BUT This you need to do...
 timedatectl set-ntp true
 
-# AND you need to do the partitioning...
-fdisk -l
+# Partitioning...
+fdisk -l # lists disks available
 
-fdisk /dev/sda ... do your thing
-## I put around 400mb to 1gb for /sda1
-## then I added 2gb for /dev/sda2
-## then I added roughly 50gb for /dev/sda3
-## then I also added roughly 50gb for /dev/sda4
+fdisk /dev/sda 
+## Generally I use 700MB for /dev/sda1 which will be later on the boot partition
+## then I added 2gb for /dev/sda2 which will later be the swap
+## roughly 50gb for /dev/sda3 for the / partition is more than enough if not using a window manager
+## then I also added roughly 50gb for /dev/sda4 (I am building LinuxFromScratch here)
 
 ## Remember in fdisk: m is menu; p is for print; n for new partition;
-##  w is for write and exit.  t is for type of partition.
+##  w is for write and exit.  t is for type of partition. a is toggle boot for a partition
 
 ##  On my system I have 4 primary partitions with no logical partitions.
-##  You really could experiment here and perhaps make the last partition an
+##  You really could experiment here and make the last partition an
 ##  extended partiion which would allow further partitioning.
 ##  But lets just keep it simple...
 
-## mkfs = make file system extension 4 on /dev/sdaN...
-mkfs.ext4 /dev/sda1  (... this should be around 500mb to 1gb )
-mkfs.ext4 /dev/sda3  (... this is where your / arch system will reside: at least: 25gb)
-mkfs.ext4 /dev/sda4  (... this is where we will be putting our linuxfromscratch system: at least 40gb)
-mkswap /dev/sda2 1gb maybe 2gb
+## mkfs = make file system extension 4 on /dev/sda#...
+mkfs.ext4 /dev/sda1  # (... this should be around 500mb to 1gb )
+mkfs.ext4 /dev/sda3  # (... this is where your / arch system will reside: at least: 25gb)
+mkfs.ext4 /dev/sda4  # (... this is where we will be putting linuxfromscratch system)
+mkswap /dev/sda2
 
 mount /dev/sda3 /mnt
 mkdir /mnt/boot
@@ -42,30 +41,31 @@ mount /dev/sda1 /mnt/boot
 swapon /dev/sda2
 
 # this next command is unnecessary. But it *should* help speed things up later...
-reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 ## this command IS neccessary!!
 pacstrap /mnt linux linux-firmware base
 
 genfstab -U /mnt >> /mnt/etc/fstab
 # edit this file after doing this command to include other partitions and swap
-# for example: blkid >> /mnt/etc/fstab ...BUT make sure to comment out the blkid contents 
+# for example: blkid >> /mnt/etc/fstab BUT make sure to comment out the blkid contents 
 # and use it as a proper reference.
 
-# After this next command the /mnt partition is the /
+## After this next command the /mnt partition is the /
 arch-chroot /mnt
 
 ##  Do the locale stuff...
 locale-gen
-and edit /etc/locale.conf
+
+## and edit 
+vim /etc/locale.conf
 
 ##  Also do not forget to add stuff NOW... the new system may not even have
 ##  pacman... check!
-
 pacman -Q | less
-
 pacman -Sy btrfs-progs sudo virtualbox-guest-utils grub
-pacman -Sy grub pacman openssh vim nano gcc bison python3 samba and anything else
+pacman -Sy grub pacman openssh vim nano gcc bison python3 samba  #  ...and anything else you need
+
 ## Samba is used for MS Windows connectivity in the same way you connect to
 ## other machines on your Windows network: \\myotherlaptop\Users\Peterop
 ## on your network.  Check out my smb.conf for an easy but unsecure configuration.
@@ -79,23 +79,27 @@ systemctl enable systemd-resolved
 systemctl enable sshd
 
 ## Edit this file if it is not present make one! :
-## use my 10.enp0s3.network example
+## use my 10.enp0s3.network as an example
 /etc/systemd/network/10-enp0s3.network
 ## The exact title is not very important it shoud be a number with some
 ## description of the device and then DOT network.
 
-reflector --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+## not necessary and may not work 
+reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 ## power off the system:
 systemctl poweroff
 ##  It's Ok to reboot at this point.  Depending on how well you configured the network...
 ##  you may even have networking!
 
-##  Ok!... Can you ping www.Google.com ?
+##  Test the rebooted system... Can you
+ping www.Google.com
+
 ##  If yes, you are good to go!! Congratutalations!
 ##  ??  If not... we need to troubleshoot!
-ping localhost (... does that even work?)
-ip addr  (... are you getting an address?)
+##
+ping localhost  # (... does that even work?)
+ip addr  #  (... are you getting an address?)
 
 ##  Enter this command if you get nothing.
 ##  The dev might be slighly different for your set up.
@@ -104,7 +108,8 @@ ip link set dev enp0s3 up
 systemctl start systemd-networkd
 systemctl start systemd-resolved
 systemctl start sshd
-## or:
+
+## if you make changes to network configuration files restart the services...
 systemctl restart systemd-networkd
 systemctl restart systemd-resolved
 systemctl restart sshd
