@@ -40,16 +40,19 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 swapon /dev/sda2
 
-# this next command is unnecessary. But it *should* help speed things up later...
-reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+## Calling reflector now is unnecessary at-least for the initial installation.  
+# reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-## this command IS neccessary!!
+## pacstrap is basically an initial installation manager.  Other packages can be added here 
+## like... bash grub git 
 pacstrap /mnt linux linux-firmware base
 
+## create fstab for the new system
 genfstab -U /mnt >> /mnt/etc/fstab
-# edit this file after doing this command to include other partitions and swap
-# for example: blkid >> /mnt/etc/fstab BUT make sure to comment out the blkid contents 
-# and use it as a proper reference.
+
+## edit /mnt/etc/fstab if needed.
+## for example: blkid >> /mnt/etc/fstab BUT make sure to comment out
+## the blkid contents and use it as a proper reference.
 
 ## After this next command the /mnt partition is the /
 arch-chroot /mnt
@@ -57,12 +60,11 @@ arch-chroot /mnt
 ##  Do the locale stuff...
 locale-gen
 
-## and edit 
+## Now edit for your language and locale
 vim /etc/locale.conf
 
-##  Also do not forget to add stuff NOW... the new system may not even have
-##  pacman... check!
-pacman -Q | less
+##  Also do not forget to add stuff (using pacman)
+pacman -Q | less  #  lists whats on the new system
 pacman -Sy btrfs-progs sudo virtualbox-guest-utils grub
 pacman -Sy grub pacman openssh vim nano gcc bison python3 samba  #  ...and anything else you need
 
@@ -84,7 +86,7 @@ systemctl enable sshd
 ## The exact title is not very important it shoud be a number with some
 ## description of the device and then DOT network.
 
-## not necessary and may not work 
+## not necessary and may not work if not installed
 reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 ## power off the system:
