@@ -54,10 +54,16 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ## for example: blkid >> /mnt/etc/fstab BUT make sure to comment out
 ## the blkid contents and use it as a proper reference.
 
+...........................................................
+
 ## After this next command the /mnt partition is the /
 arch-chroot /mnt
 
+ln -sf /usr/share/zoneinfo/<YourRegion>/<YourCity> /etc/localtime
+hwclock --systohc
+
 ##  Do the locale stuff...
+# Edit /etc/locale.gen then execute...
 locale-gen
 
 ## Now edit for your language and locale
