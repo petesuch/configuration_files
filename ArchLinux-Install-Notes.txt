@@ -1,5 +1,5 @@
 ##  Commands to Pay attention to while reading the  "ArchLinux Installation Wiki"
-##  A mini Arch Linux installation howto
+##  A mini Arch Linux installation howto -- BUT NOT A SUBSTITUTE FOR READING THE official installation guide
 
 ## The next 2 commands are not needed for users living in the United States
 ## and who speak English and use US keyboards
@@ -62,12 +62,16 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/<YourRegion>/<YourCity> /etc/localtime
 hwclock --systohc
 
+## Its easy to forget that this new system may not have all the tools you may be used to 
+## so you may need to install an editor and other essentials along the way.  
 ##  Do the locale stuff...
 # Edit /etc/locale.gen then execute...
 locale-gen
 
 ## Now edit for your language and locale
-vim /etc/locale.conf
+/etc/locale.conf
+## make a name for the new system create and edit:
+/etc/hostname
 
 ##  Also do not forget to add stuff (using pacman)
 pacman -Q | less  #  lists whats on the new system
@@ -78,17 +82,20 @@ pacman -Sy grub pacman openssh vim nano gcc bison python3 samba  #  ...and anyth
 ## other machines on your Windows network: \\myotherlaptop\Users\Peterop
 ## on your network.  Check out my smb.conf for an easy but unsecure configuration.
 
-## This installs the boot loader and then a working linux kernel to boot from.
+## This installs the boot loader using grub and then a working linux kernel to boot from.
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
-systemctl enable sshd
 
 ## Edit this file if it is not present make one! :
 ## use my 10.enp0s3.network as an example
 /etc/systemd/network/10-enp0s3.network
+
+## these commands will enable networking and sshd assuming you have configured and installed them. ;)
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+systemctl enable sshd
+
+
 ## The exact title is not very important it shoud be a number with some
 ## description of the device and then DOT network.
 
