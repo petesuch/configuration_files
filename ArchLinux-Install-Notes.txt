@@ -90,15 +90,16 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## use my 10.enp0s3.network as an example
 /etc/systemd/network/10-enp0s3.network
 
-## these commands will enable networking and sshd assuming you have configured and installed them. ;)
+## The exact title is not very important.  However the file name shoud start with a number and 
+## include a description of the device and then end with DOT network.
+
+## these commands will enable networking and sshd at boot assuming you have configured and installed them. ;)
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
+systemctl enable smb nmb # for samba
 
-## The exact title is not very important it shoud be a number with some
-## description of the device and then DOT network.
-
-## not necessary and may not work if not installed
+## if you have installed reflector to look for the fastest mirrors near you enter this command...
 reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 ## power off the system:
