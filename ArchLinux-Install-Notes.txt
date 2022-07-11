@@ -95,7 +95,6 @@ systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
 
-
 ## The exact title is not very important it shoud be a number with some
 ## description of the device and then DOT network.
 
@@ -107,6 +106,7 @@ systemctl poweroff
 ##  It's Ok to reboot at this point.  Depending on how well you configured the network...
 ##  you may even have networking!
 
+## TROUBLESHOOTING 
 ##  Test the rebooted system... Can you
 ping www.Google.com
 
@@ -118,13 +118,19 @@ ip addr  #  (... are you getting an address?)
 
 ##  Enter this command if you get nothing.
 ##  The dev might be slighly different for your set up.
-
 ip link set dev enp0s3 up
+
+## these three commands will start networking at boot
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+systemctl enable sshd
+
+## to start a stopped service...
 systemctl start systemd-networkd
 systemctl start systemd-resolved
 systemctl start sshd
 
-## if you make changes to network configuration files restart the services...
+## ... and to restart the services...
 systemctl restart systemd-networkd
 systemctl restart systemd-resolved
 systemctl restart sshd
