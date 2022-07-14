@@ -1,127 +1,146 @@
-##  Commands to Pay attention to while reading the  "ArchLinux Installation Wiki"
-##  A mini Arch Linux installation howto -- BUT NOT A SUBSTITUTE FOR READING THE official installation guide
+##  These are the commands to Pay attention to while reading the book "ArchLinux
+##  Installation Wiki"
+##  It's A mini Arch Linux installation howto --
+##  BUT NOT A SUBSTITUTE FOR READING THE official installation guide
 
+## So let's get to the meat of it.
 ## The next 2 commands are not needed for users living in the United States
-## and who speak English and use US keyboards
+## and who speak English and use US keyboards:
 ls /usr/share/kbd/keymaps/**/*.map.gz | less # lists all the keyboard keymaps.
 loadkeys us  # this is the default.
 
-# This following command is also unnecessary as I will be creating a boot partition
+## The only reason to do this command is to see if your computer uses uefi.
 ls /sys/firmware/efi/efivars
 
-# BUT This you need to do...
+# This command should be done:
 timedatectl set-ntp true
 
 # Partitioning...
-fdisk -l # lists disks available
+fdisk -l # this command lists disks available for partitioning.
+fdisk /dev/sda
 
-fdisk /dev/sda 
-## Generally I use 700MB for /dev/sda1 which will be later on the boot partition
-## then I added 2gb for /dev/sda2 which will later be the swap
-## roughly 50gb for /dev/sda3 for the / partition is more than enough if not using a window manager
-## then I also added roughly 50gb for /dev/sda4 (I am building LinuxFromScratch here)
+##  Generally I use roughly 700MB for /dev/sda1 which will be later on be the
+##  /mnt/boot partition.  Then I add 2gb for /dev/sda2 which will later be made
+##  swap.  Roughly 50gb for /dev/sda3 for the / partition is more than enough
+##  if not using a window manager then I also added roughly 50gb for /dev/sda4
+##  because I am building a LinuxFromScratch system there.
 
-## Remember in fdisk: m is menu; p is for print; n for new partition;
-##  w is for write and exit.  t is for type of partition. a is toggle boot for a partition
+
+##  fdisk commands: m is menu; p is for print; n for new partition;
+##  w is for write and exit.  t is for type of partition.  82 is Linux Swap
+##  a is toggle boot for a partition
+
 
 ##  On my system I have 4 primary partitions with no logical partitions.
-##  You really could experiment here and make the last partition an
-##  extended partiion which would allow further partitioning.
-##  But lets just keep it simple...
+##  You could experiment here and make the last partition an  extended partiion
+##  which would allow for further partitioning.  But lets just keep it simple...
 
-## mkfs = make file system extension 4 on /dev/sda#...
-mkfs.ext4 /dev/sda1  # (... this should be around 500mb to 1gb )
-mkfs.ext4 /dev/sda3  # (... this is where your / arch system will reside: at least: 25gb)
-mkfs.ext4 /dev/sda4  # (... this is where we will be putting linuxfromscratch system)
+## mkfs = make file systems on our /dev/sda partitions...
+mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda3
+mkfs.ext4 /dev/sda4
 mkswap /dev/sda2
 
-mount /dev/sda3 /mnt
+mount /dev/sda3 /mntY
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
+mount /dev/sda4 /mnt/lfs # for building Linux from scratch
 swapon /dev/sda2
 
-## Calling reflector now is unnecessary at-least for the initial installation.  
-# reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+##  Calling reflector used to be usefull in earlier arch versions but now is
+##  unnecessary at-least for the initial installation.
+##  reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-## pacstrap is basically an initial installation manager.  Other packages can be added here 
-## like... bash grub git 
+##  pacstrap is basically an initial installation manager where the linux system
+##  will be created on /mnt   Other packages can be added here like...
+##  grub git sudo openssh.
 pacstrap /mnt linux linux-firmware base
 
-## create fstab for the new system
+## create an fstab for the new system
 genfstab -U /mnt >> /mnt/etc/fstab
 
 ## edit /mnt/etc/fstab if needed.
-## for example: blkid >> /mnt/etc/fstab BUT make sure to comment out
-## the blkid contents and use it as a proper reference.
+## blkid >> /mnt/etc/fstab AND comment out the garbage using the blkid contents
+## as a reference.
 
-...........................................................
 
+................................................................................
 ## After this next command the /mnt partition is the /
+................................................................................
 arch-chroot /mnt
 
 ln -sf /usr/share/zoneinfo/<YourRegion>/<YourCity> /etc/localtime
 hwclock --systohc
 
-## Its easy to forget that this new system may not have all the tools you may be used to 
-## so you may need to install an editor and other essentials along the way.  
-##  Do the locale stuff...
-# Edit /etc/locale.gen then execute...
+##  Its easy to forget that this new system may not have all the tools you may
+##  be used to, so install an editor and other essentials along the way.
+##  I like vim or neovim and like to compile; so adding gcc bison m4, and make
+##  is necessary for me.
+
+##  Then Do the locale stuff...
+# First Edit /etc/locale.gen then execute...
 locale-gen
 
-## Now edit for your language and locale
-/etc/locale.conf
-## make a name for the new system create and edit:
-/etc/hostname
+## make a name for the new system: create and edit:
+echo "mycomputername" > /etc/hostname
 
-##  Also do not forget to add stuff (using pacman)
-pacman -Q | less  #  lists whats on the new system
-pacman -Sy btrfs-progs sudo virtualbox-guest-utils grub
-pacman -Sy grub pacman openssh vim nano gcc bison python3 samba  #  ...and anything else you need
+##  Also do not forget to add other stuff using pacman.
+##  List whats on the new system. Do you have a bootloader like grub or an editor?
+pacman -Q | less
+pacman -Sy btrfs-progs sudo virtualbox-guest-utils
+pacman -Sy grub? pacman? openssh vim nano gcc bison python samba
+##  ...and anything else you need
 
-## Samba is used for MS Windows connectivity in the same way you connect to
-## other machines on your Windows network: \\myotherlaptop\Users\Peterop
-## on your network.  Check out my smb.conf for an easy but unsecure configuration.
+##  Samba is used for MS Windows connectivity in the same way you connect to
+##  other machines on your Windows network: \\myotherlaptop\Users\Peterop
+##  on your network.  Check out my smb.conf for an easy but unsecure configuration.
 
-## This installs the boot loader using grub and then a working linux kernel to boot from.
-grub-install /dev/sda
+##  Grub installs a boot loader and then a working linux kernel to boot from.
+grub-install /dev/sda  ##  No number!!!
 grub-mkconfig -o /boot/grub/grub.cfg
 
-## Edit this file if it is not present make one! :
-## use my 10.enp0s3.network as an example
+##  Edit this file. If it is not present make one:
+##  use my 10.enp0s3.network as an example
 /etc/systemd/network/10-enp0s3.network
 
-## The exact title is not very important.  However the file name shoud start with a number and 
-## include a description of the device and then end with DOT network.
+##  The exact title is not very important. However the file name shoud start
+##  with a number and include a description of the device and then end with
+##  DOT network.
 
-## these commands will enable networking and sshd at boot assuming you have configured and installed them. ;)
+##  These commands will enable networking and sshd at boot assuming you have
+##  configured and installed them. ;)
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
 systemctl enable smb nmb # for samba
 
-## if you have installed reflector to look for the fastest mirrors near you enter this command...
+##  IF you have installed reflector to look for the fastest mirrors near you;
+##  enter this command...
 reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-## power off the system:
-systemctl poweroff
-##  It's Ok to reboot at this point.  Depending on how well you configured the network...
-##  you may even have networking!
 
-## TROUBLESHOOTING 
+##  It's Ok to reboot at this point. Depending on how well you configured the
+##  network... you may even have networking!
+##  Power off or reboot the system:
+systemctl poweroff
+systemctl reboot
+
+
+## TROUBLESHOOTING ##
 ##  Test the rebooted system... Can you
 ping www.Google.com
 
 ##  If yes, you are good to go!! Congratutalations!
-##  ??  If not... we need to troubleshoot!
+##  If not... we need to troubleshoot!
 ##
 ping localhost  # (... does that even work?)
 ip addr  #  (... are you getting an address?)
 
 ##  Enter this command if you get nothing.
-##  The dev might be slighly different for your set up.
+##  The device might be slighly different for your set up.
 ip link set dev enp0s3 up
 
-## these three commands will start networking at boot
+## These three commands will start networking at boot
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
