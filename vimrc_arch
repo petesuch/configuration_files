@@ -17,14 +17,13 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sainnhe/sonokai'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
-Plug 'codota/tabnine-vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'vim-scripts/YankRing.vim'
 Plug 'elzr/vim-json'
 Plug 'davidhalter/jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
+Plug 'vim-scripts/YankRing.vim'
 
 call plug#end()
 filetype plugin indent on
@@ -101,9 +100,9 @@ autocmd FileType css setlocal ts=2 sts=2 sw=2
 autocmd FileType svg setlocal ts=2 sts=2 sw=2
 autocmd BufWritePre * %s/\s\+$//e
 autocmd! bufwritepost  .vimrc source %
-autocmd Filetype python nnoremap <buffer> <ESC><F6> :w<CR>:vert ter python "%"<CR>
+"autocmd Filetype python nnoremap <buffer> <ESC><F6> :w<CR>:vert ter python "%"<CR>
 
-map <silent> <F11> :YRShow<CR>
+"map <silent> <F11> :YRShow<CR>
 
 noswap
 syntax on
@@ -124,7 +123,7 @@ syntax on
 "colorscheme challenger_deep  "deep FlatColor colorscheme
 "colorscheme deep-space  "Intergalactic friendly color scheme based off Hybrid
 "colorscheme desert
-"colorscheme distinguished
+colorscheme distinguished
 "colorscheme deus  "For the late night coder
 "colorscheme dogrun
 "colorscheme flattened_dark
@@ -162,7 +161,7 @@ syntax on
 "colorscheme rdark-terminal2  "Modified rdark-terminal to enhance visibility
 "colorscheme sierra  "Dark vintage colors
 "colorscheme solarized8  "Optimized Solarized colorschemes
-colorscheme solarized-suchsland "a soloarized scheme optimized more for my eyes
+"colorscheme solarized-suchsland "a soloarized scheme optimized more for my eyes
 "ccolorscheme sonokai
 "colorscheme space-vim-dark  "Dark magenta colors
 "colorscheme spacecamp  "Colors for the final frontier
