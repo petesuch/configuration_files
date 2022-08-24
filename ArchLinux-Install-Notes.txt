@@ -1,7 +1,6 @@
 ##  These are the commands to Pay attention to while reading the book "ArchLinux
 ##  Installation Wiki"
 ##  It's A mini Arch Linux installation howto --
-##  BUT NOT A SUBSTITUTE FOR READING THE official installation guide
 
 ## So let's get to the meat of it.
 ## The next 2 commands are not needed for users living in the United States
@@ -88,7 +87,7 @@ echo "mycomputername" > /etc/hostname
 ##  List whats on the new system. Do you have a bootloader like grub or an editor?
 pacman -Q | less
 pacman -Sy btrfs-progs sudo virtualbox-guest-utils
-pacman -Sy grub? pacman? openssh vim nano gcc bison python samba
+pacman -Sy grub pacman openssh vim nano gcc bison python samba
 ##  ...and anything else you need
 
 ##  Samba is used for MS Windows connectivity in the same way you connect to
@@ -115,7 +114,7 @@ systemctl enable sshd
 systemctl enable smb nmb # for samba
 
 ##  IF you have installed reflector to look for the fastest mirrors near you;
-##  enter this command...
+##  enter this command... I think they're deprecating reflector... so your mileage may vary.
 reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 
