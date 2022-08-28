@@ -1,1 +1,225 @@
+"  .vimrc for windows placed in \Users\Username: keeps the Gvim and its vim
+"   binary happy. I ended up not using the git-bash version and simply aliasing
+"   the vim command to the Gvim/vim.exe executable. This way the .vim directory is
+"   not needed in favor of vimfiles.
 
+set nocompatible
+set pythonthreedll=python310.dll
+
+filetype off
+
+set rtp+=~/vimfiles/
+call plug#begin()
+
+Plug 'junegunn/vim-plug'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'elzr/vim-json'
+Plug 'davidhalter/jedi'
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
+Plug 'dense-analysis/ale'
+Plug 'vim-python/python-syntax'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'sainnhe/sonokai'
+Plug 'mhinz/vim-startify'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'elzr/vim-json'
+Plug 'davidhalter/jedi'
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
+Plug 'dense-analysis/ale'
+Plug 'mattn/emmet-vim'
+
+call plug#end()
+
+filetype plugin indent on
+
+"""  hint: use gg=G to format a file to the correct file type!!
+
+let g:startify_custom_header = [
+            \ '                                ',
+            \ '            __                  ',
+            \ '    __  __ /\_\    ___ ___      ',
+            \ '   /\ \/\ \\/\ \ /  __` __`\    ',
+            \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \   ',
+            \ '    \ \___/  \ \_\ \_\ \_\ \_\  ',
+            \ '     \/__/    \/_/\/_/\/_/\/_/  ',
+            \ ]
+
+
+let g:startify_bookmarks = [ '~/','~/Documents/Github/', '~/Desktop/', '~/Documents/' ]
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts=1
+
+let g:netrw_banner = 1
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_altv = 0
+let g:netrw_winsize = 35
+
+let NERDTreeShowHidden = 1
+
+let g:flake8_error_marker='EE'     " set error marker to 'EE'
+let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
+let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
+let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
+let g:flake8_naming_marker=''      " disable naming warnings
+
+set shortmess+=I
+set autochdir
+set ffs=unix
+set encoding=utf-8
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set smarttab
+set expandtab
+set smartindent
+set autoindent
+set formatoptions=croql
+set incsearch
+
+set showcmd
+set ruler
+set laststatus=2
+set t_Co=256 "needed for airline
+set nowrap
+set number relativenumber
+set colorcolumn=80
+set lazyredraw
+set wildmenu
+set showmatch
+set scrolloff=8
+cd $HOME
+
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+autocmd FileType c setlocal ts=4 sts=4 sw=4
+autocmd FileType python setlocal ts=4 sts=4 sw=4
+autocmd FileType perl setlocal ts=4 sts=4 sw=4
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType json setlocal ts=2 sts=2 sw=2
+autocmd FileType css setlocal ts=2 sts=2 sw=2
+autocmd FileType svg setlocal ts=2 sts=2 sw=2
+
+autocmd BufWritePre * %s/\s\+$//e
+autocmd! bufwritepost  .vimrc source %
+
+"map <silent> <F11> :YRShow<CR>
+
+if has("gui_running")
+    set gfn=Droid\ Sans\ Mono\ Slashed\ for\ Pow:h12
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set columns=113
+    set lines=37
+    let g:airline_theme='base16'
+    "colorscheme parsec
+    colorscheme distinguished
+else
+    "let g:airline_theme='bubblegum'
+    let g:airline_theme='sonokai'
+    "colorscheme deus
+    colorscheme tender
+    "colorscheme dogrun
+    "colorscheme abstract "Dark theme based on Abstract app
+    "colorscheme focuspoint
+endif
+
+noswap
+syntax on
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Pick a Color Scheme - mostly dark themes.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"let g:airline_theme='bubblegum'
+"let g:airline_theme='molokai'
+"let g:airline_theme='base16'
+
+"colorscheme abstract "Dark theme based on Abstract app
+"colorscheme afterglow "Adaptation from Sublime Text
+"colorscheme alduin "Dark rustic colors
+"colorscheme anderson "Dark vim colorscheme based on colors from Wes Anderson films
+"colorscheme angr "Pleasant, mild, dark theme
+"colorscheme apprentice "Dark, low-contrast colorscheme
+"colorscheme archery
+"colorscheme atom "Designed to be very readable in both light and dark environments
+"colorscheme ayu
+"colorscheme carbonized-dark
+"colorscheme carbonized-light
+"colorscheme challenger_deep "deep FlatColor colorscheme
+"colorscheme darkpete
+"colorscheme darkpetes
+"colorscheme dspace	"Intergalactic friendly color scheme based off Hybrid
+"colorscheme darkpetey2
+"colorscheme dspace	"Intergalactic friendly color scheme based off Hybrid
+"colorscheme deep-space	"Intergalactic friendly color scheme based off Hybrid
+"colorscheme desert
+"colorscheme distinguished
+"colorscheme deus
+"colorscheme dogrun
+"colorscheme flattened_dark
+"colorscheme flattened_light
+"colorscheme focuspoint
+"colorscheme fogbell
+"colorscheme fogbell_light
+"colorscheme fogbell_lite
+"colorscheme gotham
+"colorscheme gruvbox
+"colorscheme happy_hacking
+"colorscheme iceberg
+"colorscheme parsec
+"colorscheme scheakur
+"colorscheme hellodark
+"colorscheme helloodark
+"colorscheme hybrid
+"colorscheme jellybeans
+"colorscheme lightning
+"colorscheme github
+"colorscheme lucid
+"colorscheme lucius
+"colorscheme materialbox
+"colorscheme meta5
+"colorscheme minimalist
+"colorscheme molokayo
+"colorscheme mountaineer
+"colorscheme nord
+"colorscheme oceanic_material
+"colorscheme one
+"colorscheme onedark
+"colorscheme orbital
+"colorscheme paramount
+"colorscheme pink-moon
+"colorscheme purify
+"colorscheme pyte
+"colorscheme rdark-terminal2
+"colorscheme sierra
+"colorscheme solarized8
+"colorscheme sonokai
+"colorscheme space-vim-dark
+"colorscheme spacecamp
+"colorscheme sunbather
+"colorscheme tender
+"colorscheme termschool
+"colorscheme twilight256
+"colorscheme two-firewatch
+"colorscheme tender
+"colorscheme wombat256mod
+"colorscheme yellow-moon
