@@ -23,7 +23,8 @@ Plug 'davidhalter/jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
-Plug 'vim-scripts/YankRing.vim'
+"Plug 'vim-scripts/YankRing.vim'
+Plug 'mattn/vim-emmet'
 
 call plug#end()
 filetype plugin indent on
@@ -68,14 +69,14 @@ set autochdir
 set ffs=unix
 set termencoding=utf-8
 set encoding=utf-8
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
+"set softtabstop=4
+"set shiftwidth=4
+"set tabstop=4
 set smarttab
 set expandtab
 set smartindent
 set autoindent
-set formatoptions=croql
+"set formatoptions=croql
 set incsearch
 set showcmd
 set ruler
