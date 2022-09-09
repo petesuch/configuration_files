@@ -40,7 +40,7 @@ mkfs.ext4 /dev/sda3
 mkfs.ext4 /dev/sda4
 mkswap /dev/sda2
 
-mount /dev/sda3 /mntY
+mount /dev/sda3 /mnt
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 mount /dev/sda4 /mnt/lfs # for building Linux from scratch
