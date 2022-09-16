@@ -1,6 +1,6 @@
 ##   This is a mini Arch Linux installation howto -- reference:
 ##  "ArchLinux Installation Wiki" 
-##  Comments have double hash tags '##'. Commands to executed are bare:
+##  Comments have double hash tags '##'. Commands to be executed are bare:
 ls -alt
 ##  Last edit: Sept 16, 2022
 
@@ -28,7 +28,7 @@ ls /sys/firmware/efi/efivars
 timedatectl set-ntp true
 
 ## Partitioning...
-fdisk -l   # this command lists disks available for partitioning.
+fdisk -l   // this command lists disks available for partitioning.
 fdisk /dev/sda
 
 ##  Generally I use roughly 700MB for /dev/sda1 which will be later on be the
@@ -62,7 +62,7 @@ swapon /dev/sda2
 ##  grub git sudo openssh.
 pacstrap /mnt linux linux-firmware base
 
-## create an fstab for the new system
+## Create an fstab for the new system
 genfstab -U /mnt >> /mnt/etc/fstab
 
 ## edit /mnt/etc/fstab if needed.
@@ -76,10 +76,10 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/<YourRegion>/<YourCity> /etc/localtime
 hwclock --systohc
 
-##  Its easy to forget that this new system may not have all the tools you may
+##  It's easy to forget that this new system may not have all the tools you may
 ##  be used to, so install an editor and other essentials along the way.
 ##  I like vim or neovim and like to compile; so adding gcc bison m4, and make
-##  is necessary for me.
+##  is necessary for me...
 
 ##  The locale stuff...
 ## Edit: /etc/locale.gen
