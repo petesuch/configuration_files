@@ -109,7 +109,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ##  Networking - so you're up and running when you reboot...
 ##  Edit this file: /etc/systemd/network/10-enp0s3.network 
 ##  If it is not present make one:
-##  use my 10.enp0s3.network in configuration_files_all_programs as an example.
+##  use my 10.enp0s3.network in configuration_files as an example.
 
 ##  Btw, The exact title is not very important. However the file name shoud start
 ##  with a number and include a description of the device and then end with
