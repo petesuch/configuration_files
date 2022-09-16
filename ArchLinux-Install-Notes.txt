@@ -59,8 +59,7 @@ pacstrap /mnt linux linux-firmware base
 genfstab -U /mnt >> /mnt/etc/fstab
 
 ## edit /mnt/etc/fstab if needed.
-## blkid >> /mnt/etc/fstab AND comment out the garbage using the blkid contents
-## as a reference.
+## 'blkid' can be used as a reference.
 
 
 ................................................................................
@@ -94,7 +93,7 @@ pacman -Sy grub pacman openssh vim nano gcc bison python samba
 ##  other machines on your Windows network: \\myotherlaptop\Users\Peterop
 ##  on your network.  Check out my smb.conf for an easy but unsecure configuration.
 
-##  Grub installs a boot loader and then a working linux kernel to boot from.
+##  I use Grub to install a boot loader and then a working linux kernel to boot from.
 grub-install /dev/sda  ##  No number!!!
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -115,12 +114,18 @@ systemctl enable smb nmb # for samba
 
 ##  IF you have installed reflector to look for the fastest mirrors near you;
 ##  enter this command... I think they're deprecating reflector... so your mileage may vary.
-reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+## reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 
 ##  It's Ok to reboot at this point. Depending on how well you configured the
 ##  network... you may even have networking!
 ##  Power off or reboot the system:
+# dont forget to give your root a password! :
+passwd root
+
+# and then exit the chroot shell:
+exit
+
 systemctl poweroff
 systemctl reboot
 
