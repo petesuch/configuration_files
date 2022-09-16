@@ -1,34 +1,45 @@
-##  These are the commands to Pay attention to while reading the book "ArchLinux
-##  Installation Wiki"
-##  It's A mini Arch Linux installation howto --
+##   This is a mini Arch Linux installation howto -- reference:
+##  "ArchLinux Installation Wiki" 
+##  Comments have double hash tags '##'. Commands to executed are bare:
+ls -alt
+##  Last edit: Sept 16, 2022
 
-## So let's get to the meat of it.
-## The next 2 commands are not needed for users living in the United States
-## and who speak English and use US keyboards:
+##  BTW there's a little trick that allows you to copy and paste from
+##  another machine or terminal. 
+##    1) Use a Bridged Adapter in networking options if using a virtual machine
+##    2) Find the ip address of the archiso system:  ip addr  // for example mine is 192.168.0.103
+##    3) Create a passwd for root: passwd root
+##    4) enable sshd:  systemctl restart sshd 
+##    5) now from your outside machine or terminal, ssh into the archiso system:
+##        ssh -l root 192.168.0.103
+
+
+## So let's get to the meat of it, shall we?
+
+## The first several commands in the Arch Installation guide are not needed for users
+## living in the United States and who speak English and use US keyboards:
 ls /usr/share/kbd/keymaps/**/*.map.gz | less # lists all the keyboard keymaps.
 loadkeys us  # this is the default.
 
 ## The only reason to do this command is to see if your computer uses uefi.
 ls /sys/firmware/efi/efivars
 
-# This command should be done:
+## This command *should* be done:
 timedatectl set-ntp true
 
-# Partitioning...
-fdisk -l # this command lists disks available for partitioning.
+## Partitioning...
+fdisk -l   # this command lists disks available for partitioning.
 fdisk /dev/sda
 
 ##  Generally I use roughly 700MB for /dev/sda1 which will be later on be the
 ##  /mnt/boot partition.  Then I add 2gb for /dev/sda2 which will later be made
 ##  swap.  Roughly 50gb for /dev/sda3 for the / partition is more than enough
 ##  if not using a window manager then I also added roughly 50gb for /dev/sda4
-##  because I am building a LinuxFromScratch system there.
+##  because I often build a LinuxFromScratch system there.
 
-
-##  fdisk commands: m is menu; p is for print; n for new partition;
+##  fdisk important commands: m is menu; p is for print; n for new partition;
 ##  w is for write and exit.  t is for type of partition.  82 is Linux Swap
 ##  a is toggle boot for a partition
-
 
 ##  On my system I have 4 primary partitions with no logical partitions.
 ##  You could experiment here and make the last partition an  extended partiion
@@ -46,10 +57,6 @@ mount /dev/sda1 /mnt/boot
 mount /dev/sda4 /mnt/lfs # for building Linux from scratch
 swapon /dev/sda2
 
-##  Calling reflector used to be usefull in earlier arch versions but now is
-##  unnecessary at-least for the initial installation.
-##  reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
 ##  pacstrap is basically an initial installation manager where the linux system
 ##  will be created on /mnt   Other packages can be added here like...
 ##  grub git sudo openssh.
@@ -60,7 +67,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 ## edit /mnt/etc/fstab if needed.
 ## 'blkid' can be used as a reference.
-
 
 ................................................................................
 ## After this next command the /mnt partition is the /
@@ -75,56 +81,63 @@ hwclock --systohc
 ##  I like vim or neovim and like to compile; so adding gcc bison m4, and make
 ##  is necessary for me.
 
-##  Then Do the locale stuff...
-# First Edit /etc/locale.gen then execute...
+##  The locale stuff...
+## Edit: /etc/locale.gen
+vim /etc/locale.gen  
+
+## then execute...
 locale-gen
 
-## make a name for the new system: create and edit:
+## Name your new system:
 echo "mycomputername" > /etc/hostname
 
 ##  Also do not forget to add other stuff using pacman.
 ##  List whats on the new system. Do you have a bootloader like grub or an editor?
 pacman -Q | less
 pacman -Sy btrfs-progs sudo virtualbox-guest-utils
-pacman -Sy grub pacman openssh vim nano gcc bison python samba
+pacman -Sy grub pacman openssh vim nano gcc bison python samba make cmake
 ##  ...and anything else you need
 
 ##  Samba is used for MS Windows connectivity in the same way you connect to
-##  other machines on your Windows network: \\myotherlaptop\Users\Peterop
-##  on your network.  Check out my smb.conf for an easy but unsecure configuration.
+##  other machines on your Windows network: \\myotherlaptop\
+##  on your network.  Check out my smb.conf for a very easy *but unsecure* configuration.
 
 ##  I use Grub to install a boot loader and then a working linux kernel to boot from.
-grub-install /dev/sda  ##  No number!!!
+grub-install /dev/sda  // No number!!!
 grub-mkconfig -o /boot/grub/grub.cfg
 
-##  Edit this file. If it is not present make one:
-##  use my 10.enp0s3.network as an example
-/etc/systemd/network/10-enp0s3.network
+##  Networking - so you're up and running when you reboot...
+##  Edit this file: /etc/systemd/network/10-enp0s3.network 
+##  If it is not present make one:
+##  use my 10.enp0s3.network in configuration_files_all_programs as an example.
 
-##  The exact title is not very important. However the file name shoud start
+##  Btw, The exact title is not very important. However the file name shoud start
 ##  with a number and include a description of the device and then end with
 ##  DOT network.
 
 ##  These commands will enable networking and sshd at boot assuming you have
-##  configured and installed them. ;)
+##  configured and installed them.
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
-systemctl enable smb nmb # for samba
 
-##  IF you have installed reflector to look for the fastest mirrors near you;
-##  enter this command... I think they're deprecating reflector... so your mileage may vary.
-## reflector --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+## If you plan to use samba:
+systemctl enable smb nmb
 
+##  IF you have installed reflector to find the fastest mirrors near you;
+##  enter this command... (however, I think they're deprecating reflector... so your mileage may vary.)
+reflector --latest 40 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-##  It's Ok to reboot at this point. Depending on how well you configured the
-##  network... you may even have networking!
-##  Power off or reboot the system:
 # dont forget to give your root a password! :
 passwd root
 
 # and then exit the chroot shell:
 exit
+
+
+##  Power off or reboot the system:
+##  It's Ok to reboot at this point. Depending on how well you configured the
+##  network... you may even have networking!
 
 systemctl poweroff
 systemctl reboot
@@ -149,12 +162,18 @@ systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
 
-## to start a stopped service...
+## Start a stopped service...
 systemctl start systemd-networkd
 systemctl start systemd-resolved
 systemctl start sshd
 
-## ... and to restart the services...
+## Restart services...
 systemctl restart systemd-networkd
 systemctl restart systemd-resolved
 systemctl restart sshd
+
+##  Remember you can always change the boot order. So if you messed up like forgetting
+##  to give yourself the root password (like I have) you can:
+##  remount the file systems,  arch-chroot /mnt and then do a: passwd root
+
+##  Happy Computing ... Enjoy your new arch system.
