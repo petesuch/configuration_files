@@ -1,6 +1,5 @@
-" vimrc for arch linux
-" Last Edit: Sept 18, 2022
-" Colorschemes are last.
+" "  .vimrc Arch Linux, no python installed yet
+" "  Last Edit Sept 18, 2022
 
 filetype off
 set nocompatible
@@ -9,8 +8,8 @@ set rtp+=~/.vim/
 call plug#begin()
 
 Plug 'junegunn/vim-plug'
-Plug 'mhinz/vim-startify'
 Plug 'petesuch/vimcolors'
+Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -38,14 +37,25 @@ let g:startify_custom_header = [
 \ '     \/__/    \/_/\/_/\/_/\/_/  ',
 \ ]
 
+" " NERDCommentor: leader key is the backspace \
 let g:startify_bookmarks = [  '~/',  '~/.vimrc',  '~/.bashrc' ]
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
 
+" " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts=1
 
+" " Airline Themes
+"let g:airline_theme='bublegum'
+"let g:airline_theme='molokai'
 let g:airline_theme='base16'
 
 let g:netrw_banner = 1
@@ -53,32 +63,31 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
 let g:netrw_altv = 1
 let g:netrw_winsize = 35
-
 let NERDTreeShowHidden = 1
 
-let g:flake8_error_marker='EE'     " set error marker to 'EE'
-let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
-let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
-let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
-let g:flake8_naming_marker=''      " disable naming warnings
+" " Python flake8
+" let g:flake8_error_marker='EE'     " set error marker to 'EE'
+" let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
+" let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
+" let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
+" let g:flake8_naming_marker=''      " disable naming warnings
 
 set shortmess+=I
 set autochdir
 set ffs=unix
 set termencoding=utf-8
 set encoding=utf-8
-
 set smarttab
 set expandtab
 set smartindent
 set autoindent
-"set formatoptions=croql
+" set formatoptions=croql
 set paste
 set incsearch
 set showcmd
 set ruler
 set laststatus=2
-set t_Co=256 "needed for airline
+set t_Co=256 " needed for airline ?
 set nowrap
 set number relativenumber
 set colorcolumn=80
@@ -97,13 +106,24 @@ autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType css setlocal ts=2 sts=2 sw=2
 autocmd FileType svg setlocal ts=2 sts=2 sw=2
 autocmd BufWritePre * %s/\s\+$//e
-autocmd! bufwritepost  .vimrc source %
+
+autocmd! bufwritepost .vimrc source %
+
+" "  Gvim or Gui
+if has("gui_running")
+    set gfn=Droid\ Sans\ Mono\ Slashed\ for\ Pow:h14
+    set guioptions-=m  "  gets rid of the gui menu
+    set guioptions-=T
+    set guioptions-=r
+    set columns=113
+    set lines=37
+endif
 
 noswap
 syntax on
 
-"  Choose a Color Scheme:
 
+" " Choose a Color Scheme:
 "colorscheme abstract  "Dark theme based on Abstract app
 "colorscheme afterglow  "Adaptation from Sublime Text
 "colorscheme alduin  "Dark rustic colors
@@ -118,7 +138,7 @@ syntax on
 "colorscheme challenger_deep  "deep FlatColor colorscheme
 "colorscheme deep-space  "Intergalactic friendly color scheme based off Hybrid
 "colorscheme desert
-colorscheme distinguished
+"colorscheme distinguished "probably the best colorscheme for vim imho
 "colorscheme deus  "For the late night coder
 "colorscheme dogrun
 "colorscheme flattened_dark
@@ -137,7 +157,7 @@ colorscheme distinguished
 "colorscheme jellybeans  "Colorful, dark color scheme
 "colorscheme lightning  "Light vim colorscheme based on Apprentice
 "colorscheme github  "Light. Based on Github's syntax highlighting
-"colorscheme lucid  "Vivid highlights and friendly, clear colors
+"colorscheme lucid      "Vivid highlights and friendly, clear colors
 "colorscheme lucius  "Lucius color scheme
 "colorscheme materialbox  "Light and dark material palette inspired based on Gruvbox
 "colorscheme meta5  "Dark colorscheme, inspired by Tron
@@ -156,8 +176,8 @@ colorscheme distinguished
 "colorscheme rdark-terminal2  "Modified rdark-terminal to enhance visibility
 "colorscheme sierra  "Dark vintage colors
 "colorscheme solarized8  "Optimized Solarized colorschemes
-"colorscheme solarized-suchsland "a soloarized scheme optimized more for my eyes
-"ccolorscheme sonokai
+colorscheme solarized-suchsland
+"colorscheme sonokai
 "colorscheme space-vim-dark  "Dark magenta colors
 "colorscheme spacecamp  "Colors for the final frontier
 "colorscheme sunbather  "Minimal pink colorscheme
@@ -169,14 +189,10 @@ colorscheme distinguished
 "colorscheme wombat256mod
 "colorscheme yellow-moon
 
-"let g:airline_theme='papercolor'
-"let g:airline_theme='molokai'
 
-
-""" Not used at momoment
-"Plug 'vim-scripts/YankRing.vim'
-"autocmd Filetype python nnoremap <buffer> <ESC><F6> :w<CR>:vert ter python "%"<CR>
-"map <silent> <F11> :YRShow<CR>
-"set softtabstop=4
-"set shiftwidth=4
-"set tabstop=4
+" " Not Used presently
+" set softtabstop=4
+" set shiftwidth=4
+" set tabstop=4
+" Plug 'vim-scripts/YankRing.vim'
+" map <silent> <F11> :YRShow<CR>
