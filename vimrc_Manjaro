@@ -1,7 +1,7 @@
 " .vimrc
 
 " works well enough for Manjaro
-" Last Edit July 22, 2022
+" Last Edit Sept 18, 2022
 
 filetype off
 set nocompatible
@@ -25,7 +25,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
 "Plug 'vim-scripts/YankRing.vim'
-Plug 'mattn/vim-emmet'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 filetype plugin indent on
@@ -67,14 +67,13 @@ set autochdir
 set ffs=unix
 set termencoding=utf-8
 set encoding=utf-8
-"set softtabstop=4
-"set shiftwidth=4
-"set tabstop=4
+
 set smarttab
 set expandtab
 set smartindent
 set autoindent
 "set formatoptions=croql
+set paste
 set incsearch
 set showcmd
 set ruler
@@ -180,3 +179,10 @@ colorscheme distinguished "probably the best colorscheme for vim imho
 "colorscheme tender
 "colorscheme wombat256mod
 "colorscheme yellow-moon
+
+
+
+
+"set softtabstop=4
+"set shiftwidth=4
+"set tabstop=4
