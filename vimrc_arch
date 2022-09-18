@@ -1,6 +1,6 @@
 " vimrc for arch linux
-" Last Edit November 12, 2021
-" I put all the colorschemes last so its easy to get to.
+" Last Edit: Sept 18, 2022
+" Colorschemes are last.
 
 filetype off
 set nocompatible
@@ -23,7 +23,6 @@ Plug 'davidhalter/jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
-"Plug 'vim-scripts/YankRing.vim'
 Plug 'mattn/emmet-vim'
 
 call plug#end()
@@ -46,8 +45,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts=1
-"let g:airline_theme='papercolor'
-"let g:airline_theme='molokai'
+
 let g:airline_theme='base16'
 
 let g:netrw_banner = 1
@@ -69,9 +67,7 @@ set autochdir
 set ffs=unix
 set termencoding=utf-8
 set encoding=utf-8
-"set softtabstop=4
-"set shiftwidth=4
-"set tabstop=4
+
 set smarttab
 set expandtab
 set smartindent
@@ -102,14 +98,11 @@ autocmd FileType css setlocal ts=2 sts=2 sw=2
 autocmd FileType svg setlocal ts=2 sts=2 sw=2
 autocmd BufWritePre * %s/\s\+$//e
 autocmd! bufwritepost  .vimrc source %
-"autocmd Filetype python nnoremap <buffer> <ESC><F6> :w<CR>:vert ter python "%"<CR>
-
-"map <silent> <F11> :YRShow<CR>
 
 noswap
 syntax on
 
-"  Pick and Choose a Color Scheme...
+"  Choose a Color Scheme:
 
 "colorscheme abstract  "Dark theme based on Abstract app
 "colorscheme afterglow  "Adaptation from Sublime Text
@@ -175,3 +168,15 @@ colorscheme distinguished
 "colorscheme tender
 "colorscheme wombat256mod
 "colorscheme yellow-moon
+
+"let g:airline_theme='papercolor'
+"let g:airline_theme='molokai'
+
+
+""" Not used at momoment
+"Plug 'vim-scripts/YankRing.vim'
+"autocmd Filetype python nnoremap <buffer> <ESC><F6> :w<CR>:vert ter python "%"<CR>
+"map <silent> <F11> :YRShow<CR>
+"set softtabstop=4
+"set shiftwidth=4
+"set tabstop=4
