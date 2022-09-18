@@ -1,16 +1,11 @@
 # lynx.lss
-#  work in progress
-#
-#  Last Edit: Nov 11th, 2021
-#
-#  Peter Suchsland
-#  peter.suchsland@gmail.com
-#
+#   Lighter colored Browser colors.
 #   A color friendly scheme for the linuxfromscratch websites.
-#
+#   Last Edit: Sept 18th, 2022
+
 #  The line must be of the form:
 #  COLOR: Integer:Foreground:Background
-#
+
 # The Integer value is interpreted as follows:
 #   0 - normal           - normal text
 #   1 - bold             - hyperlinks, see also BOLD_* options above
@@ -20,16 +15,16 @@
 #   5 - bold + underline         - hyperlinks within text emphasis
 #   6 - reverse + underlin       - currently selected hyperlink
 #   7 - reverse + underline + bold  - WHEREIS search hits
-#
+
 # Each Foreground and Background value must be one of:
 #   black         red            green         brown
 #   blue          magenta        cyan          lightgray
 #   gray          brightred      brightgreen   yellow
 #   brightblue    brightmagenta  brightcyan    white
-#
+
 # Where commands are distinguished from the rest of text.  Links should be
 #  a blue or purple and red green used in very limited ways
-#
+
 
 # For creamy  white background and black letters using the nord colorscheme:
 normal:     normal:     black:    lightgray
