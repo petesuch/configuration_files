@@ -1,3 +1,5 @@
+# Script for Manjaro Linux to clean up after lots of installations.
+
 pacman -Sc
 pacman -Qdt
 pacman -Rns
