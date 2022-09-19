@@ -6,8 +6,8 @@
 
 # Definitively text files
 *.txt	text
-*.c		text
-*.h		text
+*.c	text
+*.h	text
 *.sh	text
 *.html	text
 *.css	text
