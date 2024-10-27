@@ -16,7 +16,7 @@
    read only = no
    writeable = yes
    browseable = yes
-   valid users = your_user aother_user
+   valid users = your_user another_user
    create mask = 0644
    directory mask = 0755
    ; all files will get written as this your_user
