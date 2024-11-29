@@ -30,7 +30,7 @@
 normal:     normal:     black:    lightgray
 default:    normal:     black:    white
 
-a:          bold:       brown
+a:          bold:       blue
 alink:      reverse:    black:    brightblue
 status:     reverse:    yellow:   blue
 
